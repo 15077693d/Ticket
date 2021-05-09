@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity ^0.8.0;
 
 contract Campaign {
     struct Ticket{
@@ -20,7 +20,7 @@ contract Campaign {
                                     (
                                     )
     {
-        require(msg.sender == addressTicketMapping[msg.sender].holderAddress, "Sender is not ticket holder")
+        require(msg.sender == addressTicketMapping[msg.sender].holderAddress, "Sender is not ticket holder");
     }
 
     /**
@@ -30,7 +30,7 @@ contract Campaign {
                                     (
                                     )
     {
-        require(msg.sender == manager, "Sender is not manager")
+        require(msg.sender == manager, "Sender is not manager");
     }
 
     // getter
@@ -38,8 +38,9 @@ contract Campaign {
     * @dev getter of ticketAmount
     */
     function getTicketAmounts 
-                                pure
-                                returns(uint256)
+                            ()
+                            pure
+                            returns(uint256)
     {
         return ticketAmount;
     }
@@ -69,12 +70,37 @@ contract Campaign {
                                 returns(address, bytes32, uint256)
     {
         Ticket targetTicket = idTicketMapping[ticketId];
-        return (targetTicket.holderAddress, targetTicket._hash ,targetTicket.ticketId)
+        return (targetTicket.holderAddress, targetTicket._hash ,targetTicket.ticketId);
     }
 
     // function 
     /**
-    * @dev create number of tickets by ticketAmount
+    * @dev buy ticket  
+    */
+    function buyTicket 
+                            (
+                            )
+                            external
+    {
+        idTicketMapping[ticketAmount] = msg.sender
+        addressTicketMapping
+        ticketAmount+=1;
+    }
+
+    /**
+    * @dev transfer tickets 
+    */
+    function createTicket 
+                            (
+                            )
+                            external
+    {
+        ticketAmount+=1;
+        
+    }
+
+    /**
+    * @dev validate tickets 
     */
     function createTicket 
                             (
@@ -84,4 +110,5 @@ contract Campaign {
     {
 
     }
+
 }

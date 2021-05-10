@@ -10,7 +10,15 @@ contract Ticket is ERC721 {
     // Number of ticket are minted
     uint256 private _ticketCount = 0;
 
-    constructor() ERC721("Ticket", "Ticket") {}
+    // Metadata base url
+    string private _theBaseURI;
+    constructor(string memory __theBaseURI) ERC721("Ticket", "Ticket") {
+        _theBaseURI = __theBaseURI;
+    }
+
+    // function _baseURI() internal override view returns (string memory) {
+    //     return _theBaseURI;
+    // }
 
     // getter
     function getQRcode(uint256 _tokenId) internal view returns (bytes32) {
@@ -56,7 +64,7 @@ contract Ticket is ERC721 {
      * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
      *
      */
-    function mint() internal {
+    function mint() public {
         _safeMint(msg.sender, _ticketCount);
         // add qrcode
         _tokenIdQRcodeMapping[_ticketCount] = keccak256(
@@ -66,7 +74,7 @@ contract Ticket is ERC721 {
     }
 }
 
-contract TicketTest is Ticket {
+contract TicketTest  is Ticket("http://localhost:3000/api/v1")  {
     function renewQRcode_(uint256 _tokenId, address _newTicketHolder) external {
         renewQRcode(_tokenId, _newTicketHolder);
     }

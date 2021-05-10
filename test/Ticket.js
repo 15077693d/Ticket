@@ -13,7 +13,7 @@ contract('Ticket Tests', async (accounts) => {
     })
 
     it("Mint ticket can add qrcode add ticket count and become an owner", async function(){
-        await ticketContract.mint_({from: accounts[0]})
+        await ticketContract.mint({from: accounts[0]})
         const qrcode = await ticketContract.getQRcode_.call(0)
         const ticketCount = (await ticketContract.getTicketCount.call()).toNumber()
         const owner = await ticketContract.ownerOf.call(0)
@@ -38,7 +38,7 @@ contract('Ticket Tests', async (accounts) => {
         } catch (error) {
             errorMessage = error.message
         }
-        assert.equal(errorMessage, "Returned error: VM Exception while processing transaction: revert msg.sender need to be holder to change QRcode -- Reason given: msg.sender need to be holder to change QRcode.",
+        assert.equal(errorMessage, "Returned error: VM Exception while processing transaction: revert msg.sender need to be Owner to change QRcode -- Reason given: msg.sender need to be Owner to change QRcode.",
             "Non owner should not renew QR code"
         )
     })
@@ -54,5 +54,14 @@ contract('Ticket Tests', async (accounts) => {
         )
     })
 
-    
+    it("Transfer will change the code and change owner", async () => {
+        let oldQRcode = await ticketContract.getQRcode_.call(0)
+        let owner = await ticketContract.ownerOf.call(0)
+        console.log(owner, accounts[0])
+        await ticketContract.safeTransferFrom(accounts[0], accounts[1],0, {from:accounts[0]})
+        let newQRcode = await ticketContract.getQRcode_.call(0)
+        let newOwner = await ticketContract.ownerOf.call(0)
+        assert.notEqual(oldQRcode,newQRcode,"Cannot change QR code.")
+        assert.equal(accounts[1],newOwner,"Cannot change owner to new one")
+    })
 })

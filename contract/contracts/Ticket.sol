@@ -84,12 +84,12 @@ contract Ticket is ERC721 {
         }
     }
 
-    contract TicketTest  is Ticket("http://localhost:3000/api/v1")  {
+    contract SimpleTicket  is Ticket("http://localhost:3000/api/v1")  {
         function renewQRcode_(uint256 _tokenId, address _newTicketHolder) external {
             renewQRcode(_tokenId, _newTicketHolder);
         }
-
-        function getQRcode_(uint256 _tokenId) external returns(bytes32){
+        
+        function getQRcode_(uint256 _tokenId) external view returns(bytes32){
             return getQRcode(_tokenId);
         }
 

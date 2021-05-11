@@ -1,10 +1,8 @@
 import Web3 from 'web3'
-import FlightSuretyAppJson from './contracts/FlightSuretyApp.json'
-import FlightSuretyDataJson from './contracts/FlightSuretyData.json'
+import SimpleTicketJson from './SimpleTicket.json'
 let web3;
 
-let flightSuretyAppAddress = "0x153D02110972190C6a3164bBe6dE0e309809Fa85"
-let flightSuretyDataAddress = "0xAfb6F25E8e2218b8ad1C19F2d004cACaD373C436"
+let SimpleTicketAddress = "0x89C6FdEC4c38A4cA940d80c78F1199Cd74f740a0"
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     // We are in the browser and metamask is running
@@ -17,12 +15,41 @@ if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     web3 = new Web3(provider, null, null);
 }
 
-const FlightSuretyApp = new web3.eth.Contract(FlightSuretyAppJson.abi, flightSuretyAppAddress)
-const FlightSuretyData = new web3.eth.Contract(FlightSuretyDataJson.abi, flightSuretyDataAddress)
+const SimpleTicketInstance = new web3.eth.Contract(SimpleTicketJson.abi, SimpleTicketAddress)
 const getAccount = async () => {
     const accounts = await web3.eth.getAccounts()
     return accounts[0]
 }
 
-export { web3, FlightSuretyApp, FlightSuretyData, getAccount }
+
+const buy = async () => {
+    await SimpleTicketInstance.mint().send({
+        from: await getAccount()
+    })
+}
+
+const transfer = async ({ from, to, tokenId }) => {
+    await SimpleTicketInstance.safeTransferFrom(from, to, tokenId).send({
+        from: await getAccount()
+    })
+}
+
+const renewQRCode = async ({ tokenId, newTicketOwner }) => {
+    await SimpleTicketInstance.renewQRcode(tokenId, newTicketOwner).send({
+        from: await getAccount()
+    })
+}
+
+const showTickets = async ({ tokenId, newTicketOwner }) => {
+    const ticketCount = Number(await SimpleTicketInstance.getTicketCount().call())
+    let ticketPromises = []
+    for (let i = 0; i < ticketCount; i++) {
+        ticketPromises.push()
+    }
+}
+
+const getQRCode = async ({ tokenId }) => {
+    return await SimpleTicketInstance.getQRcode_(tokenId).call()
+}
+export { web3, SimpleTicket, getAccount }
 

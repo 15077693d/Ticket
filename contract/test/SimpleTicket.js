@@ -1,5 +1,5 @@
-const Ticket = artifacts.require("TicketTest");
-contract('Ticket Tests', async (accounts) => {
+const Ticket = artifacts.require("SimpleTicket");
+contract('SimpleTicket Tests', async (accounts) => {
 
     let ticketContract;
     before('setup contract', async () => {

@@ -1,2 +1,0 @@
-# Ticket
-Transferable Ticket Creation

@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import SimpleTicketJson from './SimpleTicket.json'
 let web3;
 
-let SimpleTicketAddress = "0x89C6FdEC4c38A4cA940d80c78F1199Cd74f740a0"
+let SimpleTicketAddress = "0x61D43b62aaf2cA99792224fD016280957c1E4d92"
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     // We are in the browser and metamask is running
@@ -36,7 +36,7 @@ const transfer = async (to, tokenId) => {
 }
 
 const renewQRCode = async (tokenId, newTicketOwner) => {
-    await SimpleTicketInstance.methods.renewQRcode(tokenId, newTicketOwner).send({
+    await SimpleTicketInstance.methods.renewQRcode_(tokenId, newTicketOwner).send({
         from: await getAccount()
     })
 }
@@ -56,10 +56,14 @@ const validateOwner = async (tokenId, address) => {
 }
 
 const validateQRcode = async (qrcode, tokenId) => {
-    const correntQRcode = await SimpleTicketInstance.getQRcode_(tokenId).call()
+    const correntQRcode = await SimpleTicketInstance.methods.getQRcode_(tokenId).call()
     return correntQRcode === qrcode
 }
 
+const getQRcode = async (tokenId) => {
+    const qrCode = await SimpleTicketInstance.methods.getQRcode_(tokenId).call()
+    return qrCode
+}
 
 const SimpleTicket = {
     buy,
@@ -67,7 +71,8 @@ const SimpleTicket = {
     renewQRCode,
     showOwners,
     validateOwner,
-    validateQRcode
+    validateQRcode,
+    getQRcode
 }
 export { SimpleTicket,getAccount}
 

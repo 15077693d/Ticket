@@ -1,6 +1,8 @@
 import {SimpleTicket} from './resources/web3'
 import styled from 'styled-components'
-import { ShowAllOwner, TransferTicket } from './components/RightElement'
+import  ShowAllOwner  from './components/ShowAllOwner'
+import TransferTicket from './components/TransferTicket'
+import RenewQRcode from './components/RenewQRcode'
 import {useState, useEffect} from 'react'
 import {getAccount} from './resources/web3'
 const Left = styled.div`
@@ -28,9 +30,19 @@ width: 930px;
 `
 function App() {
   const [user, setUser] = useState("")
+  const [userTicketIds, setUserTicketIds] = useState([])
   useEffect(async()=>{
     setUser(await getAccount())
-  },[])
+    const owners = await SimpleTicket.showOwners()
+    let _userTicketIds = []
+    for (let i = 0; i < owners.length; i++) {
+        if (owners[i] == user) {
+            _userTicketIds.push(i)
+        }
+    }
+    setUserTicketIds(_userTicketIds)
+  },[user])
+ 
   return (
     <div className="App">
       <Container>
@@ -45,7 +57,8 @@ function App() {
         </Left>
         <Right>
           {/* <ShowAllOwner /> */}
-          <TransferTicket user={user}/>
+          {/* <TransferTicket userTicketIds={userTicketIds}/> */}
+          {/* <RenewQRcode userTicketIds={userTicketIds}/> */}
         </Right>
       </Container>
     </div>

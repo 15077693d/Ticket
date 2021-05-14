@@ -17,7 +17,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-
+// local mnemonic: acid describe prepare sick month excess ahead spread method man unable hockey
  const HDWalletProvider = require('@truffle/hdwallet-provider');
  
  const fs = require('fs');
@@ -43,8 +43,9 @@
      //
       development: {
        host: "127.0.0.1",     // Localhost (default: none)
-       port: 7545,            // Standard Ethereum port (default: none)
+       port: 8545,            // Standard Ethereum port (default: none)
        network_id: "*",       // Any network (default: none)
+       gasPrice: 5500000,
       },
  
      // Another network with more advanced options...

@@ -23,33 +23,51 @@ const getAccount = async () => {
 
 
 const buy = async () => {
-    await SimpleTicketInstance.mint().send({
+    console.log(SimpleTicketInstance)
+    await SimpleTicketInstance.methods.mint_().send({
         from: await getAccount()
     })
 }
 
-const transfer = async ({ from, to, tokenId }) => {
-    await SimpleTicketInstance.safeTransferFrom(from, to, tokenId).send({
+const transfer = async (to, tokenId) => {
+    await SimpleTicketInstance.methods.safeTransferFrom(await getAccount(),to, tokenId).send({
         from: await getAccount()
     })
 }
 
-const renewQRCode = async ({ tokenId, newTicketOwner }) => {
-    await SimpleTicketInstance.renewQRcode(tokenId, newTicketOwner).send({
+const renewQRCode = async (tokenId, newTicketOwner) => {
+    await SimpleTicketInstance.methods.renewQRcode(tokenId, newTicketOwner).send({
         from: await getAccount()
     })
 }
 
-const showTickets = async ({ tokenId, newTicketOwner }) => {
-    const ticketCount = Number(await SimpleTicketInstance.getTicketCount().call())
+const showOwners = async () => {
+    const ticketCount = Number(await SimpleTicketInstance.methods.getTicketCount().call())
     let ticketPromises = []
     for (let i = 0; i < ticketCount; i++) {
-        ticketPromises.push()
+        ticketPromises.push(SimpleTicketInstance.methods.ownerOf(i).call())
     }
+    return await Promise.all(ticketPromises)
 }
 
-const getQRCode = async ({ tokenId }) => {
-    return await SimpleTicketInstance.getQRcode_(tokenId).call()
+const validateOwner = async (tokenId, address) => {
+    const owner = await SimpleTicketInstance.methods.ownerOf(tokenId)
+    return owner === address
 }
-export { web3, SimpleTicket, getAccount }
+
+const validateQRcode = async (qrcode, tokenId) => {
+    const correntQRcode = await SimpleTicketInstance.getQRcode_(tokenId).call()
+    return correntQRcode === qrcode
+}
+
+
+const SimpleTicket = {
+    buy,
+    transfer,
+    renewQRCode,
+    showOwners,
+    validateOwner,
+    validateQRcode
+}
+export { SimpleTicket,getAccount}
 

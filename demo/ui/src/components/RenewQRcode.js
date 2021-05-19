@@ -20,6 +20,11 @@ const NullQRcode = styled.div`
 const RenewQRcode = ({userTicketIds}) => {
     const [selectedId,setSelectedId] = useState("Ticket id.")
     const [selectedQRcode, setSelectedQRcode] = useState("")
+    console.log(selectedQRcode)
+    const handleChange = async (e) => {
+                                        setSelectedId(e.target.value)
+                                        setSelectedQRcode(await SimpleTicket.getQRcode(e.target.value))
+                                        }
     const handleClick = async () => {
         await SimpleTicket.renewQRCode(selectedId, await getAccount())
         setSelectedQRcode(await SimpleTicket.getQRcode(selectedId))
@@ -29,7 +34,7 @@ const RenewQRcode = ({userTicketIds}) => {
             <Form>
             <Field>
                 <label for="ticketid">Selected Ticket</label>
-                <select value={selectedId} id="ticketid" onChange={(e) => setSelectedId(e.target.value)}>
+                <select value={selectedId} id="ticketid" onChange={handleChange}>
                     <option selected disabled>Ticket id.</option>
                     {
                         userTicketIds.map(
@@ -43,7 +48,7 @@ const RenewQRcode = ({userTicketIds}) => {
             <button onClick={handleClick}>Renew</button>
             </Form>
             {
-                selectedId=="Ticket id."?<NullQRcode/>:<QRCode value={selectedQRcode}/>
+                selectedQRcode==""?<NullQRcode/>:<QRCode value={selectedQRcode}/>
             }
         </Container>
     );

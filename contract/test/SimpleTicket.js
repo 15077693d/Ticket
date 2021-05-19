@@ -64,4 +64,9 @@ contract('SimpleTicket Tests', async (accounts) => {
         assert.notEqual(oldQRcode,newQRcode,"Cannot change QR code.")
         assert.equal(accounts[1],newOwner,"Cannot change owner to new one")
     })
+
+    it("validateQRcode can validate owner", async () => {
+        let oldQRcode = await ticketContract.getQRcode_.call(0)
+        assert.equal(true,await ticketContract.validateQRcode.call(0, oldQRcode.split("=")[1]))
+    })
 })

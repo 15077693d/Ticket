@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import SimpleTicketJson from './SimpleTicket.json'
 let web3;
 
-let SimpleTicketAddress = "0x61D43b62aaf2cA99792224fD016280957c1E4d92"
+let SimpleTicketAddress = "0x5e8371e7934eC5Cec2CB318f91F5c9Bd970D8429"
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     // We are in the browser and metamask is running
@@ -55,9 +55,9 @@ const validateOwner = async (tokenId, address) => {
     return owner === address
 }
 
-const validateQRcode = async (qrcode, tokenId) => {
-    const correntQRcode = await SimpleTicketInstance.methods.getQRcode_(tokenId).call()
-    return correntQRcode === qrcode
+const validateQRcode = async (tokenId, code) => {
+    const flag = await SimpleTicketInstance.methods.validateQRcode(tokenId, code).call()
+    return flag
 }
 
 const getQRcode = async (tokenId) => {
@@ -65,6 +65,10 @@ const getQRcode = async (tokenId) => {
     return qrCode
 }
 
+const getData = async (tokenId) => {
+    const tokenURI = await SimpleTicketInstance.methods.tokenURI(tokenId).call()
+    return tokenURI
+}
 const SimpleTicket = {
     buy,
     transfer,
@@ -72,7 +76,8 @@ const SimpleTicket = {
     showOwners,
     validateOwner,
     validateQRcode,
-    getQRcode
+    getQRcode,
+    getData
 }
 export { SimpleTicket,getAccount}
 

@@ -1,10 +1,12 @@
-import {SimpleTicket} from './resources/web3'
+import { SimpleTicket } from './resources/web3'
 import styled from 'styled-components'
-import  ShowAllOwner  from './components/ShowAllOwner'
+import ShowAllOwner from './components/ShowAllOwner'
 import TransferTicket from './components/TransferTicket'
 import RenewQRcode from './components/RenewQRcode'
-import {useState, useEffect} from 'react'
-import {getAccount} from './resources/web3'
+import ValidateQRcode from './components/ValidateQRcode'
+import ReadTicketData from './components/ReadTicketData'
+import { useState, useEffect } from 'react'
+import { getAccount } from './resources/web3'
 const Left = styled.div`
   width:200px;
   display: flex;
@@ -30,35 +32,53 @@ width: 930px;
 `
 function App() {
   const [user, setUser] = useState("")
+  const [page, setPage] = useState("ShowAllOwner")
   const [userTicketIds, setUserTicketIds] = useState([])
-  useEffect(async()=>{
+
+  useEffect(async () => {
     setUser(await getAccount())
     const owners = await SimpleTicket.showOwners()
     let _userTicketIds = []
     for (let i = 0; i < owners.length; i++) {
-        if (owners[i] == user) {
-            _userTicketIds.push(i)
-        }
+      if (owners[i] == user) {
+        _userTicketIds.push(i)
+      }
     }
     setUserTicketIds(_userTicketIds)
-  },[user])
- 
+  }, [user])
+  let rightElement;
+  switch (page) {
+    case "RenewQRcode":
+      rightElement = <RenewQRcode userTicketIds={userTicketIds} />
+      break;
+    case "ShowAllOwner":
+      rightElement = <ShowAllOwner />
+      break;
+    case "TransferTicket":
+      rightElement = <TransferTicket userTicketIds={userTicketIds} />
+      break;
+    case "ValidateQRcode":
+      rightElement = <ValidateQRcode />
+      break;
+    case "ReadTicketData":
+      rightElement = <ReadTicketData userTicketIds={userTicketIds} />
+      break;
+    default:
+      break;
+  }
   return (
     <div className="App">
       <Container>
         <Left>
           <button onClick={SimpleTicket.buy}>Buy Ticket</button>
-          <button>Transfer Ticket</button>
-          <button>Renew QR code</button>
-          <button>Show all owner</button>
-          <button>Validate owner</button>
-          <button>Validate QR code</button>
-          <button>Read ticket data</button>
+          <button onClick={() => setPage("TransferTicket")}>Transfer Ticket</button>
+          <button onClick={() => setPage("RenewQRcode")}>Renew QR code</button>
+          <button onClick={() => setPage("ShowAllOwner")}>Show all owner</button>
+          <button onClick={() => setPage("ValidateQRcode")}>Validate QR code</button>
+          <button onClick={() => setPage("ReadTicketData")}>Read ticket data</button>
         </Left>
         <Right>
-          {/* <ShowAllOwner /> */}
-          {/* <TransferTicket userTicketIds={userTicketIds}/> */}
-          {/* <RenewQRcode userTicketIds={userTicketIds}/> */}
+          {rightElement}
         </Right>
       </Container>
     </div>

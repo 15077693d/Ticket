@@ -27,7 +27,7 @@ contract Ticket is ERC721 {
     function getQRcode(uint256 _tokenId) internal view returns (string memory) {
         string memory tokenIdString = _tokenId.toString();
         string memory _codeString = _tokenIdQRcodeMapping[_tokenId].toString();
-        return string(abi.encodePacked(tokenIdString, "=", _codeString));
+        return string(abi.encodePacked("ticket:", tokenIdString, "=", _codeString));
     }
 
     function getTicketCount() public view returns (uint256) {

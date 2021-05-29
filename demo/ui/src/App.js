@@ -34,7 +34,7 @@ function App() {
   const [user, setUser] = useState("")
   const [page, setPage] = useState("ShowAllOwner")
   const [userTicketIds, setUserTicketIds] = useState([])
-
+  const [refresh, setRefresh] = useState("")
   useEffect(async () => {
     setUser(await getAccount())
     const owners = await SimpleTicket.showOwners()
@@ -45,14 +45,14 @@ function App() {
       }
     }
     setUserTicketIds(_userTicketIds)
-  }, [user])
+  }, [user,refresh])
   let rightElement;
   switch (page) {
     case "RenewQRcode":
       rightElement = <RenewQRcode userTicketIds={userTicketIds} />
       break;
     case "ShowAllOwner":
-      rightElement = <ShowAllOwner />
+      rightElement = <ShowAllOwner refresh={refresh} />
       break;
     case "TransferTicket":
       rightElement = <TransferTicket userTicketIds={userTicketIds} />
@@ -66,11 +66,15 @@ function App() {
     default:
       break;
   }
+  const handleBuy = async () => {
+    await SimpleTicket.buy()
+    setRefresh(new Date())
+  }
   return (
     <div className="App">
       <Container>
         <Left>
-          <button onClick={SimpleTicket.buy}>Buy Ticket</button>
+          <button onClick={handleBuy}>Buy Ticket</button>
           <button onClick={() => setPage("TransferTicket")}>Transfer Ticket</button>
           <button onClick={() => setPage("RenewQRcode")}>Renew QR codes</button>
           <button onClick={() => setPage("ShowAllOwner")}>Show all owner</button>

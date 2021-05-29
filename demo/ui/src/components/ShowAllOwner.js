@@ -10,11 +10,11 @@ const ShowAllOwnerTable = styled.table`
     }
 `
 
-const ShowAllOwner = () => {
+const ShowAllOwner = ({refresh}) => {
     const [owners, setOwners] = useState([])
     useEffect(async () => {
         setOwners(await SimpleTicket.showOwners())
-    }, [])
+    }, [refresh])
     return (
         <ShowAllOwnerTable>
             <tr>

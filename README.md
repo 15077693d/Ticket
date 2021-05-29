@@ -1,5 +1,6 @@
 # Ticket
 Transferable Ticket Creation (Ticket NFT)
+Any questions feel free to contract oscaryiu.lapsang@gmail.com.
 
 # Inspiration
 I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Kong! However, I have no ticket(E-tickets with qr code) so I would like to buy second hand ticket... Then the problems come out...

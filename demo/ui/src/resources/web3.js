@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import SimpleTicketJson from './SimpleTicket.json'
 let web3;
 
-let SimpleTicketAddress = "0x0E14543C8E27940899993A142b625483B7aa202d"
+let SimpleTicketAddress = "0xbeEE235EE0DBbB59051e22D265025b64201dAdcF"
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     // We are in the browser and metamask is running

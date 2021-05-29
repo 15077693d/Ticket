@@ -112,7 +112,10 @@ contract Ticket is ERC721 {
     }
 }
 
-contract SimpleTicket is Ticket("http://localhost:3000/api/v1/") {
+contract SimpleTicket is Ticket {
+    constructor(string memory __theBaseURI) Ticket(__theBaseURI)public{
+
+    }
     function renewQRcode_(uint256 _tokenId, address _newTicketHolder) external {
         renewQRcode(_tokenId, _newTicketHolder);
     }

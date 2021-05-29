@@ -3,7 +3,7 @@ contract('SimpleTicket Tests', async (accounts) => {
 
     let ticketContract;
     before('setup contract', async () => {
-        ticketContract = await Ticket.new()
+        ticketContract = await Ticket.new("http://localhost:3000/api/v1/")
     })
 
     it("Setup contract correctly and return name, symbol ", async function(){

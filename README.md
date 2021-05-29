@@ -1,12 +1,29 @@
 # Ticket
 Transferable Ticket Creation
 
+# Inspiration
+I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Kong! However, I have no ticket(E-tickets with qr code) so I would like to buy second hand ticket... Then the problems come out...
+
+| Problem  | Solution |
+| ------------- | ------------- |
+| Someone pretend they have the ticket  | A function that I can check the one is owner or not.  |
+| Someone have one ticket but capture the qrcode and sell to multiple person  | Make ticket as ERC721 troken! each sell is a troken transfer, no need to capture qrcode.  |
+|  I afraid someone will take a photo to my qrcode and go the concert before me. | Renew QR code anytime if you want! |
+
 # Function demo
-1. Buy Ticket
+1. Buy Ticket  
+
+![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
 2. Transfer Ticket
+
+![transfer_ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/transfer_ticket.gif)
 3. Renew QR codes
-4. Show all owner
+
+![renew_qrcode](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/renew_qrcode.gif)
+4. Show all owner 
 5. Validate QR code
+
+![correct_result](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/correct_result.gif)
 6. Read ticket data
 
 # Requirement

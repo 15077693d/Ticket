@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "./TicketData.sol";
 import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
 
-contract Ticket is ERC721 {
+contract Ticket is ERC721, TicketData {
     using Strings for uint256;
     // Mapping from ticket Id to ticket QR code
     mapping(uint256 => uint256) private _tokenIdQRcodeMapping;
@@ -100,7 +101,8 @@ contract Ticket is ERC721 {
      * - If `to` refers to a smart contract, it must implement {IERC721Receiver-onERC721Received}, which is called upon a safe transfer.
      *
      */
-    function mint() internal {
+    function mint(string memory category) internal returns (uint256){
+        require(ticketTypes[category].available > 0,"Your ticket category is not available...");
         _safeMint(msg.sender, _ticketCount);
         // add qrcode
         _tokenIdQRcodeMapping[_ticketCount] = uint256(
@@ -109,11 +111,13 @@ contract Ticket is ERC721 {
             )
         );
         _ticketCount += 1;
+        decrease(category);
+        return _ticketCount;
     }
 }
 
 contract SimpleTicket is Ticket {
-    constructor(string memory __theBaseURI) Ticket(__theBaseURI)public{
+    constructor(string memory __theBaseURI) Ticket(__theBaseURI) public{
 
     }
     function renewQRcode_(uint256 _tokenId, address _newTicketHolder) external {
@@ -128,7 +132,11 @@ contract SimpleTicket is Ticket {
         return getQRcode(_tokenId);
     }
 
-    function mint_() external {
-        mint();
+    function mint_(string memory category) external returns (uint256){
+        return mint(category);
+    }
+
+    function register_(string memory category, uint256 price, uint256 maximum) external{
+        register(category,  price,  maximum);
     }
 }

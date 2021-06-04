@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
-import { SimpleTicket } from '../resources/web3'
-import {Field} from '../components/common'
+import { SimpleTicket } from '../../ethereum/SimpleTicket'
+import {Field} from '../../components/common'
 // TransferTicket
 const Container = styled.form`
     width:500px;
 `
-const TransferTicket = ({ userTicketIds }) => {
+const TransferTicket = ({ simpleTicket,userTicketIds,setRefresh }) => {
     const [selectedId,setSelectedId] = useState("Ticket id.")
     const [receiver, setReceiver] = useState("")
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await SimpleTicket.transfer(receiver, selectedId)
+        await simpleTicket.transfer(receiver, selectedId)
+        setRefresh(new Date())
     }
     return (
         <Container>

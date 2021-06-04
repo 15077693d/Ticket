@@ -1,5 +1,5 @@
 // migrating the appropriate contracts
-var SimpleTicket = artifacts.require("SimpleTicket");
+var CampaignFactory = artifacts.require("CampaignFactory");
 module.exports = function (deployer) {
-    deployer.deploy(SimpleTicket, "http://localhost:3000/api/v1/");
+    deployer.deploy(CampaignFactory);
 };

@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'
-import { SimpleTicket } from '../resources/web3'
-
+import {Table} from '../common'
 // ShowAllOwner
-const ShowAllOwnerTable = styled.table`
-    border: 1px solid black;
-    th, td{
-        border: 1px solid black;
-    }
-`
-
-const ShowAllOwner = ({refresh}) => {
+const ShowAllOwner = ({simpleTicket,refresh}) => {
     const [owners, setOwners] = useState([])
     useEffect(async () => {
-        setOwners(await SimpleTicket.showOwners())
-    }, [refresh])
+        if(simpleTicket){
+            setOwners(await simpleTicket.showOwners())
+        }
+    }, [refresh, simpleTicket])
     return (
-        <ShowAllOwnerTable>
+        <Table>
             <tr>
                 <th>Ticket id.</th>
                 <th>Owners</th>
@@ -30,7 +23,7 @@ const ShowAllOwner = ({refresh}) => {
                         </tr>
                 )
             }
-        </ShowAllOwnerTable>
+        </Table>
     );
 };
 

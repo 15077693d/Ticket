@@ -1,16 +1,16 @@
 import React, { useRef, useState } from 'react';
-import { Field } from '../components/common'
+import { Field } from '../../components/common'
 import styled from 'styled-components'
-import { SimpleTicket } from '../resources/web3'
+import { SimpleTicket } from '../../ethereum/SimpleTicket'
 // ReadTicketData
 const Container = styled.form`
     width:500px;
 `
-const ReadTicketData = ({ userTicketIds }) => {
+const ReadTicketData = ({ simpleTicket, userTicketIds }) => {
     const ticketIdRef = useRef()
     const [data, setData] = useState("Select a ticket...")
     const handleChange = async () => {
-        const _data = await SimpleTicket.getData(ticketIdRef.current.value)
+        const _data = await simpleTicket.getData(ticketIdRef.current.value)
         setData(_data)
     }
     return (

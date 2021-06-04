@@ -5,11 +5,12 @@ contract CampaignFactory {
     Campaign[] public campaigns;
     uint256 public numOfCampaign;
     address[] public campaignAddresses;
-    function addCampaign(uint256 numberOfTicket,
+    function addCampaign(
                          string memory baseURI,
-                         string memory _campaignName) public{
+                         string memory _campaignName
+                         ) public{
                 numOfCampaign+=1;
-                Campaign campaign = new Campaign(numberOfTicket,baseURI,_campaignName);
+                Campaign campaign = new Campaign(baseURI,_campaignName);
                 campaigns.push(campaign);
                 campaignAddresses.push(address(campaign));
     }

@@ -11,7 +11,7 @@ contract("CampaignFactory Tests", async (accounts) => {
     })
 
     it("add campaign and return correct numOfCampaign one ", async () => {
-        await CampaignFactoryContract.addCampaign(10,"test.com","concert1")
+        await CampaignFactoryContract.addCampaign("test.com","concert1")
         const numOfCampaign = await CampaignFactoryContract.numOfCampaign.call()
         console.log(await CampaignFactoryContract.getCampaignAddresses.call())
         assert.equal(numOfCampaign,1)

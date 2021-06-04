@@ -1,92 +1,26 @@
-import { SimpleTicket } from './resources/web3'
-import styled from 'styled-components'
-import ShowAllOwner from './components/ShowAllOwner'
-import TransferTicket from './components/TransferTicket'
-import RenewQRcode from './components/RenewQRcode'
-import ValidateQRcode from './components/ValidateQRcode'
-import ReadTicketData from './components/ReadTicketData'
-import { useState, useEffect } from 'react'
-import { getAccount } from './resources/web3'
-const Left = styled.div`
-  width:200px;
-  display: flex;
-  flex-direction: column;
-  justify-content:space-between;
-`
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import {Ticket,Campaign} from "./pages/index"
 
-const Right = styled.div`
-  display: flex;
-  justify-content: center;
-  border: 1px black solid;
-  width:700px;
-  height:300px;
-  padding-top:30px;
-  box-sizing: border-box;
-`
-
-const Container = styled.div`
-width: 930px;
-   display: flex;
-   height:300px;
-  justify-content:space-between;
-`
-function App() {
-  const [user, setUser] = useState("")
-  const [page, setPage] = useState("ShowAllOwner")
-  const [userTicketIds, setUserTicketIds] = useState([])
-  const [refresh, setRefresh] = useState("")
-  useEffect(async () => {
-    setUser(await getAccount())
-    const owners = await SimpleTicket.showOwners()
-    let _userTicketIds = []
-    for (let i = 0; i < owners.length; i++) {
-      if (owners[i] == user) {
-        _userTicketIds.push(i)
-      }
-    }
-    setUserTicketIds(_userTicketIds)
-  }, [user,refresh])
-  let rightElement;
-  switch (page) {
-    case "RenewQRcode":
-      rightElement = <RenewQRcode userTicketIds={userTicketIds} />
-      break;
-    case "ShowAllOwner":
-      rightElement = <ShowAllOwner refresh={refresh} />
-      break;
-    case "TransferTicket":
-      rightElement = <TransferTicket userTicketIds={userTicketIds} />
-      break;
-    case "ValidateQRcode":
-      rightElement = <ValidateQRcode />
-      break;
-    case "ReadTicketData":
-      rightElement = <ReadTicketData userTicketIds={userTicketIds} />
-      break;
-    default:
-      break;
-  }
-  const handleBuy = async () => {
-    await SimpleTicket.buy()
-    setRefresh(new Date())
-  }
+export default function App() {
   return (
-    <div className="App">
-      <Container>
-        <Left>
-          <button onClick={handleBuy}>Buy Ticket</button>
-          <button onClick={() => setPage("TransferTicket")}>Transfer Ticket</button>
-          <button onClick={() => setPage("RenewQRcode")}>Renew QR codes</button>
-          <button onClick={() => setPage("ShowAllOwner")}>Show all owner</button>
-          <button onClick={() => setPage("ValidateQRcode")}>Validate QR code</button>
-          <button onClick={() => setPage("ReadTicketData")}>Read ticket data</button>
-        </Left>
-        <Right>
-          {rightElement}
-        </Right>
-      </Container>
-    </div>
+      <Router>
+      <div>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/campaign/:campaignAddress">
+            <Ticket />
+          </Route>
+           <Route path="/">
+            <Campaign />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
-
-export default App;

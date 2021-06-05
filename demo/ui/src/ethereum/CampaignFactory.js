@@ -1,7 +1,7 @@
 import {getAccount, web3} from './web3.js'
 import CampaignFactoryJson from './CampaignFactory.json'
 
-let campaignFactoryAddress = "0xFcd32fac583359bdF399e359595f1Ec6aF7ec504"
+let campaignFactoryAddress = "0x3CFa772d4167D4079b457Ab7ff0C93C8575864a5"
 let campaignFactoryInstance = new web3.eth.Contract(CampaignFactoryJson.abi, campaignFactoryAddress)
 
 const addCampaign = async (baseURI,

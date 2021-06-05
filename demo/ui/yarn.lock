@@ -6104,11 +6104,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-<<<<<<< HEAD
-hoist-non-react-statics@^3.0.0:
-=======
 hoist-non-react-statics@^3.0.0, hoist-non-react-statics@^3.1.0:
->>>>>>> 13323cc089f9a0e97b169c6614e8facea889573b
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -7734,11 +7730,7 @@ loglevel@^1.6.8:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.1.tgz#005fde2f5e6e47068f935ff28573e125ef72f197"
   integrity sha512-Hesni4s5UkWkwCGJMQGAh71PaLUmKFM60dHvq0zi/vDhhrzuk+4GgNbTXJ12YYQJn6ZKBDNIjYcuQGKudvqrIw==
 
-<<<<<<< HEAD
-loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
-=======
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
->>>>>>> 13323cc089f9a0e97b169c6614e8facea889573b
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -9986,11 +9978,7 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-<<<<<<< HEAD
-react-is@^16.7.0, react-is@^16.8.1:
-=======
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
->>>>>>> 13323cc089f9a0e97b169c6614e8facea889573b
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
@@ -10009,8 +9997,6 @@ react-qr-code@^1.1.1:
     prop-types "^15.7.2"
     qr.js "0.0.0"
 
-<<<<<<< HEAD
-=======
 react-qr-scanner@^1.0.0-alpha.7:
   version "1.0.0-alpha.7"
   resolved "https://registry.yarnpkg.com/react-qr-scanner/-/react-qr-scanner-1.0.0-alpha.7.tgz#f63993cffe238f8cbca4984d03973accc842500b"
@@ -10019,7 +10005,6 @@ react-qr-scanner@^1.0.0-alpha.7:
     "@zxing/library" "^0.18.3"
     prop-types "^15.7.2"
 
->>>>>>> 13323cc089f9a0e97b169c6614e8facea889573b
 react-refresh@^0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"

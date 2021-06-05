@@ -1,9 +1,0 @@
-Demo UI -> right
-
-1. Buy Ticket -> show ticket vs owner list
-2. Transfer Ticket -> show new owner input -> show ticket vs owner list
-3. Renew QR code -> show new QR code
-4. Show all owner -> show ticket vs owner list
-5. Validate owner -> show owner input and QR code input -> bool 
-6. Validate QR code -> show QR code input(metamask) -> bool
-7. Read ticket data -> show ticket id input -> show data

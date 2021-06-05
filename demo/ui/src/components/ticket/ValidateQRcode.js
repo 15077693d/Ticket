@@ -1,7 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import { Field } from '../../components/common'
-import { SimpleTicket } from '../../ethereum/SimpleTicket'
 import QrReader from 'react-qr-scanner'
 // ValidateQRcode
 const Container = styled.form`

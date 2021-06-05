@@ -31,6 +31,11 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 6. Read ticket data
 
+# What's next?
+- implement campaign, campaign factory contract
+- Register ticket types
+- Add campaign page
+
 # Requirement
 - truffle
 - react

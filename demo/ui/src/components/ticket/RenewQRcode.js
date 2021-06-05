@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import QRCode from "react-qr-code";
-import {Field} from '../components/common'
+import {Field} from '../../components/common'
 import styled from 'styled-components'
-import {SimpleTicket, getAccount} from '../resources/web3'
+import {getAccount} from '../../ethereum/index'
 const Container = styled.div`
  width: 600px;
  display: flex;
@@ -17,19 +17,23 @@ const NullQRcode = styled.div`
     border: 1px solid black;
 `
 
-const RenewQRcode = ({userTicketIds}) => {
+const RenewQRcode = ({simpleTicket,userTicketIds}) => {
     const [selectedId,setSelectedId] = useState("Ticket id.")
     const [selectedQRcode, setSelectedQRcode] = useState("")
+    const handleChange = async (e) => {
+                                        setSelectedId(e.target.value)
+                                        setSelectedQRcode(await simpleTicket.getQRcode(e.target.value))
+                                        }
     const handleClick = async () => {
-        await SimpleTicket.renewQRCode(selectedId, await getAccount())
-        setSelectedQRcode(await SimpleTicket.getQRcode(selectedId))
+        await simpleTicket.renewQRCode(selectedId, await getAccount())
+        setSelectedQRcode(await simpleTicket.getQRcode(selectedId))
     }
     return (
         <Container>
             <Form>
             <Field>
                 <label for="ticketid">Selected Ticket</label>
-                <select value={selectedId} id="ticketid" onChange={(e) => setSelectedId(e.target.value)}>
+                <select value={selectedId} id="ticketid" onChange={handleChange}>
                     <option selected disabled>Ticket id.</option>
                     {
                         userTicketIds.map(
@@ -43,7 +47,7 @@ const RenewQRcode = ({userTicketIds}) => {
             <button onClick={handleClick}>Renew</button>
             </Form>
             {
-                selectedId=="Ticket id."?<NullQRcode/>:<QRCode value={selectedQRcode}/>
+                selectedQRcode==""?<NullQRcode/>:<QRCode value={selectedQRcode}/>
             }
         </Container>
     );

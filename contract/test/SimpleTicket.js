@@ -3,7 +3,7 @@ contract('SimpleTicket Tests', async (accounts) => {
 
     let ticketContract;
     before('setup contract', async () => {
-        ticketContract = await Ticket.new()
+        ticketContract = await Ticket.new("http://localhost:3000/api/v1/")
     })
 
     it("Setup contract correctly and return name, symbol ", async function(){
@@ -12,8 +12,17 @@ contract('SimpleTicket Tests', async (accounts) => {
         assert.equal(name+symbol, "TicketTicket", "Incorrect name and symbol")
     })
 
+    it("register red ticket", async () => {
+        await ticketContract.register_("red", 10, 10)
+        const result = await ticketContract.getTicketType("red")
+        assert.equal(result['0'],"red")
+        assert.equal(result['1'].toNumber(),10)
+        assert.equal(result['2'].toNumber(),10)
+        assert.equal(result['3'].toNumber(),10)
+    })
+    
     it("Mint ticket can add qrcode add ticket count and become an owner", async function(){
-        await ticketContract.mint_({from: accounts[0]})
+        await ticketContract.mint_("red",{from: accounts[0]})
         const qrcode = await ticketContract.getQRcode_.call(0)
         const ticketCount = (await ticketContract.getTicketCount.call()).toNumber()
         const owner = await ticketContract.ownerOf.call(0)
@@ -63,5 +72,10 @@ contract('SimpleTicket Tests', async (accounts) => {
         let newOwner = await ticketContract.ownerOf.call(0)
         assert.notEqual(oldQRcode,newQRcode,"Cannot change QR code.")
         assert.equal(accounts[1],newOwner,"Cannot change owner to new one")
+    })
+
+    it("validateQRcode can validate owner", async () => {
+        let oldQRcode = await ticketContract.getQRcode_.call(0)
+        assert.equal(true,await ticketContract.validateQRcode.call(0, oldQRcode.split("=")[1]))
     })
 })

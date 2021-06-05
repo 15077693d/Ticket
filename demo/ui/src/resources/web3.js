@@ -2,7 +2,7 @@ import Web3 from 'web3'
 import SimpleTicketJson from './SimpleTicket.json'
 let web3;
 
-let SimpleTicketAddress = "0x61D43b62aaf2cA99792224fD016280957c1E4d92"
+let SimpleTicketAddress = "0xa3BD4481E529A161AFa6E503eC3f77B633601a33"
 
 if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
     // We are in the browser and metamask is running
@@ -10,7 +10,7 @@ if (typeof window !== "undefined" && typeof window.web3 !== "undefined") {
 } else {
     // We are on the Server OR the user is not running metamask
     const provider = new Web3.providers.HttpProvider(
-        "http://localhost:7545/"
+        "http://localhost:8545/"
     );
     web3 = new Web3(provider, null, null);
 }

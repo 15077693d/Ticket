@@ -38,7 +38,7 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 # Requirement
 - truffle
-- react
+- ganache
 - yarn/npm
 - metamask
 

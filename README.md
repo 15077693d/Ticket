@@ -14,9 +14,11 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 # What's next?
 - implement rest api for ticket metadata etc. location...
+- public the public testnet
+- transfer ticket on Opensea
 
 # Solution demo
-## Publication
+## Publisher
 1. Create Campaign 
 
 ![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
@@ -54,7 +56,7 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 ## Access demo branch
 ```bash
-git checkout simple-ticket-contract-demo
+git checkout campaign-factory-demo
 ```
 
 ## Install dependency
@@ -75,7 +77,7 @@ yarn install
 cd contract
 truffle deploy
 ```
-- copy contract address to demo/ui/src/resources/web3.js and replace SimpleTicketAddress's value
+- copy contract address to demo/ui/src/ethereum/CampaignFactory.js and replace campaignFactoryAddress value
 
 ![deploy_contract](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/deploy_contract.png)
 

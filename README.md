@@ -37,7 +37,7 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 2. Transfer ticket
 
-![transfer_ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/transfer_ticket.gif)
+![transfer_ticket](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/transfer_ticket.gif)
 
 3. Renew QR codes
 

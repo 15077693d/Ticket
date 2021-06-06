@@ -21,19 +21,19 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 ## Publisher
 1. Create Campaign 
 
-![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
+![Create Campaign ](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/create_campaign.gif)
 
 2. Create Campaign ticket category
 
-![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
+![Create Campaign ticket category](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/register_ticket.gif)
 
 3. Validate QR code
 
-![correct_result](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/correct_result.gif)
+![correct_result](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/validate_code.gif)
 ## Customer
 1. Buy ticket  
 
-![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
+![Buy Ticket](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/buy_ticket.gif)
 
 2. Transfer ticket
 
@@ -41,9 +41,11 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 3. Renew QR codes
 
-![renew_qrcode](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/renew_qrcode.gif)
+![renew_qrcode](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/renew_qrcode.gif)
 
 4. Show all owner 
+
+![read_data](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/read_data.png)
 
 5. Read ticket data
 
@@ -79,7 +81,7 @@ truffle deploy
 ```
 - copy contract address to demo/ui/src/ethereum/CampaignFactory.js and replace campaignFactoryAddress value
 
-![deploy_contract](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/deploy_contract.png)
+![deploy_contract](https://github.com/15077693d/Ticket/blob/campaign-factory-demo/document/deploy_contracts.png)
 
 ## Open web interface
 ```bash

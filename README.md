@@ -10,6 +10,11 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 | Someone have one ticket but capture the qrcode and sell to multiple person  | Make ticket as ERC721 troken! each sell is a troken transfer, no need to capture qrcode.  |
 |  I afraid someone will take a photo to my qrcode and go the concert before me. | Renew QR code anytime if you want! |
 
+# What's next?
+- implement campaign, campaign factory contract
+- Register ticket types
+- Add campaign page
+
 # Solution demo
 1. Buy Ticket  
 
@@ -30,11 +35,6 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 ![correct_result](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/correct_result.gif)
 
 6. Read ticket data
-
-# What's next?
-- implement campaign, campaign factory contract
-- Register ticket types
-- Add campaign page
 
 # Requirement
 - truffle

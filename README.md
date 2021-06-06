@@ -13,11 +13,24 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 |  I afraid someone will take a photo to my qrcode and go the concert before me. | Renew QR code anytime if you want! |
 
 # Solution demo
-1. Buy Ticket  
+## Publication
+1. Create Campaign 
 
 ![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
 
-2. Transfer Ticket
+2. Create Campaign ticket category
+
+![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
+
+3. Validate QR code
+
+![correct_result](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/correct_result.gif)
+## Customer
+1. Buy ticket  
+
+![Buy Ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/buy_ticket.gif)
+
+2. Transfer ticket
 
 ![transfer_ticket](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/transfer_ticket.gif)
 
@@ -27,15 +40,10 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 4. Show all owner 
 
-5. Validate QR code
-
-![correct_result](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/correct_result.gif)
-
-6. Read ticket data
+5. Read ticket data
 
 # Requirement
 - truffle
-- react
 - yarn/npm
 - metamask
 
@@ -66,7 +74,7 @@ truffle deploy
 ```
 - copy contract address to demo/ui/src/resources/web3.js and replace SimpleTicketAddress's value
 
-![renew_qrcode](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/deploy_contract.png)
+![deploy_contract](https://github.com/15077693d/Ticket/blob/simple-ticket-contract-demo/documents/deploy_contract.png)
 
 ## Open web interface
 ```bash

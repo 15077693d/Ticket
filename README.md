@@ -14,9 +14,9 @@ I love sunset rollercoaster and they will have a concert on 2021/10/8 in Hong Ko
 
 # What's next?
 - implement rest api for ticket metadata etc. location...
-- public the public testnet
+- public to public testnet
 - transfer ticket on Opensea
-
+- buy ticket with ether
 # Solution demo
 ## Publisher
 1. Create Campaign 
